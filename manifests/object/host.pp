@@ -37,7 +37,7 @@ define icinga2::object::host (
   $action_url = undef,
   $icon_image = undef,
   $icon_image_alt = undef,
-  $target_dir = '/etc/icinga2/objects',
+  $target_dir = '/etc/icinga2/objects/hosts',
   $target_file_name = "${fqdn}.conf",
   $target_file_ensure = file,
   $target_file_owner = 'root',
@@ -74,9 +74,8 @@ define icinga2::object::host (
     }
 
   }
-  #...otherwise, use the same file resource but without a notify => parameter: 
+  #...otherwise, use the same file resource but without a notify => parameter:
   else {
-  
     file { "${target_dir}/${target_file_name}":
       ensure  => $target_file_ensure,
       owner   => $target_file_owner,
@@ -84,7 +83,6 @@ define icinga2::object::host (
       mode    => $target_file_mode,
       content => template('icinga2/object_host.conf.erb'),
     }
-  
   }
 
 }
