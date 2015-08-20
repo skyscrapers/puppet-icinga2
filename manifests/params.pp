@@ -23,7 +23,7 @@ class icinga2::params {
      #Pick the right package provider:
       $package_provider = 'yum'
     }
-	
+
 	#RedHat systems:
     'RedHat': {
       #Pick the right package provider:
@@ -121,7 +121,7 @@ class icinga2::params {
           $server_plugin_package_install_options = '--no-install-recommends'
         }
         #Fail if we're on any other Ubuntu release:
-        default: { fail("${::operatingsystemmajrelease} is not a supported Ubuntu release version!") }
+        default: { fail("${::operatingsystemrelease} is not a supported Ubuntu release version!") }
       }
     }
 
@@ -241,7 +241,7 @@ class icinga2::params {
     #Fail if we're on any other OS:
     default: { fail("${::operatingsystem} is not supported!") }
   }
-  
+
   #Whether to purge object files or directories in /etc/icinga2/objects that aren't managed by Puppet
   $purge_unmanaged_object_files = false
 
@@ -268,7 +268,7 @@ class icinga2::params {
 
     #Icinga 2 server daemon names for Ubuntu systems:
     'Ubuntu': {
-      case $::operatingsystemmajrelease {
+      case $::operatingsystemrelease {
         '12.04': {
           $icinga2_server_service_name = 'icinga2'
         }
@@ -276,7 +276,7 @@ class icinga2::params {
           $icinga2_server_service_name = 'icinga2'
         }
         #Fail if we're on any other Ubuntu release:
-        default: { fail("${::operatingsystemmajrelease} is not a supported Ubuntu release version!") }
+        default: { fail("${::operatingsystemrelease} is not a supported Ubuntu release version!") }
       }
     }
 
@@ -348,7 +348,7 @@ class icinga2::params {
       $nrpe_user            = 'nagios'
       $nrpe_group           = 'nagios'
     }
-   
+
    #Fail if we're on any other OS:
     default: { fail("${::operatingsystem} is not supported!") }
   }
@@ -393,7 +393,7 @@ class icinga2::params {
           $client_plugin_package_install_options = '--no-install-recommends'
         }
         #Fail if we're on any other Ubuntu release:
-        default: { fail("${::operatingsystemmajrelease} is not a supported Ubuntu release version!") }
+        default: { fail("${::operatingsystemrelease} is not a supported Ubuntu release version!") }
       }
     }
 
