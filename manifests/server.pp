@@ -14,7 +14,7 @@
 class icinga2::server (
   $manage_repos = $icinga2::params::manage_repos,
   $use_debmon_repo = $icinga2::params::use_debmon_repo,
-  $server_db_type = $icinga2::params::server_db_type,
+  $server_db_type = undef,
   $db_name = $icinga2::params::db_name,
   $db_user = $icinga2::params::db_user,
   $db_password = $icinga2::params::db_password,
@@ -49,7 +49,7 @@ class icinga2::server (
       case $server_db_type {
         'mysql': { $server_db_schema_path = '/usr/share/icinga2-ido-mysql/schema/mysql.sql' }
         'pgsql': { $server_db_schema_path = '/usr/share/icinga2-ido-pgsql/schema/pgsql.sql' }
-        default: { fail("${server_db_type} is not a supported database! Please specify either 'mysql' for MySQL or 'pgsql' for Postgres.") }
+        default: { }
       }
     }
 
@@ -59,7 +59,7 @@ class icinga2::server (
       case $server_db_type {
         'mysql': { $server_db_schema_path = '/usr/share/icinga2-ido-mysql/schema/mysql.sql' }
         'pgsql': { $server_db_schema_path = '/usr/share/icinga2-ido-pgsql/schema/pgsql.sql' }
-        default: { fail("${server_db_type} is not a supported database! Please specify either 'mysql' for MySQL or 'pgsql' for Postgres.") }
+        default: {  }
       }
     }
 
@@ -69,7 +69,7 @@ class icinga2::server (
       case $server_db_type {
         'mysql': { $server_db_schema_path = '/usr/share/icinga2-ido-mysql/schema/mysql.sql' }
         'pgsql': { $server_db_schema_path = '/usr/share/icinga2-ido-pgsql/schema/pgsql.sql' }
-        default: { fail("${server_db_type} is not a supported database! Please specify either 'mysql' for MySQL or 'pgsql' for Postgres.") }
+        default: {  }
       }
     }
 
