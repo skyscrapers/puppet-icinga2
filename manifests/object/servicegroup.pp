@@ -14,7 +14,7 @@ define icinga2::object::servicegroup (
   $display_name = $name,
   $template_to_import = undef,
   $groups = [],
-  $target_dir = '/etc/icinga2/objects',
+  $target_dir = '/etc/icinga2/objects/servicegroups',
   $target_file_name = "${name}.conf",
   $target_file_ensure = file,
   $target_file_owner = 'root',
@@ -51,9 +51,9 @@ define icinga2::object::servicegroup (
     }
 
   }
-  #...otherwise, use the same file resource but without a notify => parameter: 
+  #...otherwise, use the same file resource but without a notify => parameter:
   else {
-  
+
     file { "${target_dir}/${target_file_name}":
       ensure  => $target_file_ensure,
       owner   => $target_file_owner,
@@ -61,7 +61,7 @@ define icinga2::object::servicegroup (
       mode    => $target_file_mode,
       content => template('icinga2/object_servicegroup.conf.erb'),
     }
-  
+
   }
 
 }
