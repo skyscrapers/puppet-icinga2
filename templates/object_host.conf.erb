@@ -37,8 +37,8 @@ object Host "<%= @object_hostname %>" {
   <%- end -%>
   }
   <%- else -%>
-  <%- if scope.function_is_array(@value)  -%>
-  vars.<%= key %> = <%= value %>
+  <%- if @value.is_a?(Array)  -%>
+  vars.<%= key %> = [ <%- @value.each do |i| -%> "<%= i %>", <%- end -%>]
   <%- else -%>
   vars.<%= key %> = "<%= value %>"
   <%- end -%>
