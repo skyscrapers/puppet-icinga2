@@ -37,8 +37,8 @@ object Host "<%= @object_hostname %>" {
   <%- end -%>
   }
   <%- else -%>
-  <%- if @value.is_a?(Array)  -%>
-  vars.<%= key %> = [ <%- @value.each do |i| -%> "<%= i %>", <%- end -%>]
+  <%- if value.is_a?(Array)  -%>
+  vars.<%= key %> = [ <%- value.each do |subvalue| -%> "<%= subvalue %>", <%- end -%>]
   <%- else -%>
   vars.<%= key %> = "<%= value %>"
   <%- end -%>
