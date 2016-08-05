@@ -14,6 +14,7 @@ define icinga2::object::apply_service_to_host (
   $object_servicename = $name,
   $template_to_import = 'generic-service',
   $display_name = $name,
+  $host_name = undef,
   $assign_where = undef,
   $ignore_where = undef,
   $groups = [],
@@ -40,7 +41,7 @@ define icinga2::object::apply_service_to_host (
   $icon_image_alt = undef,
   $target_dir         = '/etc/icinga2/conf.d',
   $target_file_name   = "${name}.conf",
-  $target_file_ensure = file,  
+  $target_file_ensure = file,
   $target_file_owner  = 'root',
   $target_file_group  = 'root',
   $target_file_mode   = '0644',
@@ -50,6 +51,7 @@ define icinga2::object::apply_service_to_host (
   #Do some validation of the class' parameters:
   validate_string($object_servicename)
   validate_string($template_to_import)
+  validate_string($host_name)
   validate_array($groups)
   validate_hash($vars)
   validate_string($target_dir)
@@ -73,9 +75,9 @@ define icinga2::object::apply_service_to_host (
     }
 
   }
-  #...otherwise, use the same file resource but without a notify => parameter: 
+  #...otherwise, use the same file resource but without a notify => parameter:
   else {
-  
+
     file { "${target_dir}/${target_file_name}":
       ensure  => $target_file_ensure,
       owner   => $target_file_owner,
@@ -83,7 +85,7 @@ define icinga2::object::apply_service_to_host (
       mode    => $target_file_mode,
       content => template('icinga2/object_apply_service_to_host.conf.erb'),
     }
-  
+
   }
 
 }
