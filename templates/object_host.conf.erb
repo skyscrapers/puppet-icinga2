@@ -40,7 +40,7 @@ object Host "<%= @object_hostname %>" {
   <%- if value.is_a?(Array)  -%>
   vars.<%= key %> = [ <%- value.each do |subvalue| -%> "<%= subvalue %>", <%- end -%>]
   <%- else -%>
-  vars.<%= key %> = "<%= value %>"
+  vars.<%= key %> = "<%= value.delete('"') %>"
   <%- end -%>
   <%- end -%>
   <%- end -%>
