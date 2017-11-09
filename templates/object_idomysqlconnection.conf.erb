@@ -52,6 +52,6 @@ object IdoMysqlConnection "mysql-ido" {
   <%- end -%>
 
   <%- if @categories.length != 0 -%>
-  categories = <%= @categories.map {|category| "#{category}"}.join(' | ') %>
+  categories = [<%= @categories.map {|category| "#{category}"}.join(' , ') %>]
   <%- end -%>
 }
