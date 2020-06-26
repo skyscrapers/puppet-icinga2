@@ -57,6 +57,7 @@ class icinga2::server::install::repos inherits icinga2::server {
             'id'     => 'F51A91A5EE001AA5D77D53C4C6E319C334410682',
             'source' => 'http://packages.icinga.org/icinga.key',
           }
+        }
       }
 
       #Debian systems:
