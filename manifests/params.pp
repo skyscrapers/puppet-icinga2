@@ -299,6 +299,12 @@ class icinga2::params {
         '16.04': {
           $icinga2_server_service_name = 'icinga2'
         }
+        '18.04': {
+          $icinga2_server_service_name = 'icinga2'
+        }
+        '20.04': {
+          $icinga2_server_service_name = 'icinga2'
+        }
         #Fail if we're on any other Ubuntu release:
         default: { fail("${::operatingsystemrelease} is not a supported Ubuntu release version!") }
       }
@@ -417,6 +423,16 @@ class icinga2::params {
           $client_plugin_package_install_options = '--no-install-recommends'
         }
         '16.04': {
+          $icinga2_client_packages = ['nagios-nrpe-server', 'nagios-plugins', 'nagios-plugins-basic', 'nagios-plugins-common', 'nagios-plugins-standard', 'nagios-snmp-plugins', 'nagios-plugins-extra', 'nagios-plugins-contrib', 'nagios-nrpe-plugin']
+          #Specify '--no-install-recommends' so we don't inadvertently get Nagios 3 installed; it comes as a recommended package with most of the plugin packages:
+          $client_plugin_package_install_options = '--no-install-recommends'
+        }
+        '18.04': {
+          $icinga2_client_packages = ['nagios-nrpe-server', 'nagios-plugins', 'nagios-plugins-basic', 'nagios-plugins-common', 'nagios-plugins-standard', 'nagios-snmp-plugins', 'nagios-plugins-extra', 'nagios-plugins-contrib', 'nagios-nrpe-plugin']
+          #Specify '--no-install-recommends' so we don't inadvertently get Nagios 3 installed; it comes as a recommended package with most of the plugin packages:
+          $client_plugin_package_install_options = '--no-install-recommends'
+        }
+        '20.04': {
           $icinga2_client_packages = ['nagios-nrpe-server', 'nagios-plugins', 'nagios-plugins-basic', 'nagios-plugins-common', 'nagios-plugins-standard', 'nagios-snmp-plugins', 'nagios-plugins-extra', 'nagios-plugins-contrib', 'nagios-nrpe-plugin']
           #Specify '--no-install-recommends' so we don't inadvertently get Nagios 3 installed; it comes as a recommended package with most of the plugin packages:
           $client_plugin_package_install_options = '--no-install-recommends'
