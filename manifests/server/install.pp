@@ -19,10 +19,10 @@ class icinga2::server::install inherits icinga2::server {
   #class on the right.
   #
   #Here, we're setting up the package repos first, then installing the packages:
-  class{'icinga2::server::install::repos':} ~>
-  class{'icinga2::server::install::packages':} ~>
-  class{'icinga2::server::install::execs':} ->
-  Class['icinga2::server::install']
+  class{'icinga2::server::install::repos':}
+  ~> class{'icinga2::server::install::packages':}
+  ~> class{'icinga2::server::install::execs':}
+  -> Class['icinga2::server::install']
 
 }
 
@@ -48,9 +48,15 @@ class icinga2::server::install::repos inherits icinga2::server {
      'Ubuntu': {
         #Include the apt module's base class so we can...
         include apt
-        #...use the apt module to add the Icinga 2 PPA from launchpad.net:
-        # https://launchpad.net/~formorer/+archive/ubuntu/icinga
-        apt::ppa { 'ppa:formorer/icinga': }
+
+        apt::source { 'icinga2':
+          location => 'http://packages.icinga.org/ubuntu',
+          release  => "icinga-${lsbdistcodename}",
+          repos    => 'main',
+          key      => {
+            'id'     => 'F51A91A5EE001AA5D77D53C4C6E319C334410682',
+            'source' => 'http://packages.icinga.org/icinga.key',
+          }
       }
 
       #Debian systems:
